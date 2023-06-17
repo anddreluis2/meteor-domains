@@ -18,15 +18,18 @@ export const DomainForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="">
+    <form
+      onSubmit={handleSubmit}
+      className="h-10 flex gap-2 border-black w-full"
+    >
       <input
-        className="border-black rounded-lg"
+        className="rounded-lg p-2 w-full"
         onChange={(e) => setText(e.target.value)}
         type="text"
         placeholder="Type to add new domains"
       />
 
-      <button className="border-black rounded-lg p-3" type="submit">
+      <button className="w-1/5 border rounded-lg" type="submit">
         Add domain
       </button>
     </form>
