@@ -19,7 +19,20 @@ export const Info = () => {
   }, [domains]);
 
   if (isLoading()) {
-    return <div className="">Loading...</div>;
+    return (
+      <div className="flex justify-center p-10 text-gray-700">Loading...</div>
+    );
+  }
+
+  if (!domains.length) {
+    return (
+      <>
+        <DomainForm />
+        <div className="flex justify-center p-10 text-gray-700">
+          Insert your domains to start
+        </div>
+      </>
+    );
   }
 
   return (
