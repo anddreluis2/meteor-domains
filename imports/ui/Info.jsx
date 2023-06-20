@@ -3,6 +3,7 @@ import { useTracker, useSubscribe } from "meteor/react-meteor-data";
 import { DomainsCollection } from "../api/domain/DomainCollections";
 import { DomainForm } from "../ui/DomainForm";
 import { Domains } from "./Domains";
+import { LoadingSpinner } from "./LoadingSpinner";
 
 export const Info = () => {
   const isLoading = useSubscribe("domains");
@@ -18,9 +19,7 @@ export const Info = () => {
   }, [domains]);
 
   if (isLoading()) {
-    return (
-      <div className="flex justify-center p-10 text-gray-700">Loading...</div>
-    );
+    return <LoadingSpinner />;
   }
 
   if (!domains.length) {
