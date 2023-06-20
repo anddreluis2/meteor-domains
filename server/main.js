@@ -33,7 +33,6 @@ Meteor.startup(() => {
   process.env.WHOIS_API = "https://domain-availability.whoisxmlapi.com/api/v1";
   // If the Links collection is empty, add some data.
   if (DomainsCollection.find().count() === 0) {
-    console.log(process.env.WHOIS_API);
     insertDomain({
       url: "www.anddreluis.com.br",
     });

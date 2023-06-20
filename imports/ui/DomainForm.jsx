@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { DomainsCollection } from "../api/domain/DomainCollections";
 import { toast } from "react-hot-toast";
 import { LoadingSpinner } from "./LoadingSpinner";
@@ -23,6 +23,7 @@ export const DomainForm = () => {
             createdAt: new Date(),
           });
           toast.success("Domain successfully added");
+          setDomain("");
         } else {
           toast.error("This domain is unavailable");
         }
@@ -40,6 +41,7 @@ export const DomainForm = () => {
       <input
         className="rounded-lg shadow-inactive p-2 w-full"
         onChange={(e) => setDomain(e.target.value)}
+        value={domain}
         type="text"
         placeholder="Type to add new domains"
       />

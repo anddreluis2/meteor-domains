@@ -14,10 +14,6 @@ export const Info = () => {
 
   const deleteDomain = ({ _id }) => DomainsCollection.remove(_id);
 
-  useEffect(() => {
-    console.log(domains);
-  }, [domains]);
-
   if (isLoading()) {
     return (
       <div className="flex justify-center items-center">
