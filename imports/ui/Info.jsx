@@ -19,7 +19,11 @@ export const Info = () => {
   }, [domains]);
 
   if (isLoading()) {
-    return <LoadingSpinner />;
+    return (
+      <div className="flex justify-center items-center">
+        <LoadingSpinner />
+      </div>
+    );
   }
 
   if (!domains.length) {
