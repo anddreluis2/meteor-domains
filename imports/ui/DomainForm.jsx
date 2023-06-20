@@ -38,14 +38,14 @@ export const DomainForm = () => {
       className="h-10 flex gap-2 border-black w-full"
     >
       <input
-        className="rounded-lg border border-gray-400 p-2 w-full"
+        className="rounded-lg shadow-inactive p-2 w-full"
         onChange={(e) => setDomain(e.target.value)}
         type="text"
         placeholder="Type to add new domains"
       />
 
       <button
-        className="w-1/5 flex justify-center text-gray-700 items-center border border-gray-400 rounded-lg"
+        className="w-1/5 flex justify-center text-gray-700 items-center shadow-inactive hover:border-black hover:border rounded-lg"
         type="submit"
       >
         {loading ? <LoadingSpinner /> : "Submit"}
