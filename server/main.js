@@ -1,5 +1,25 @@
 import { Meteor } from "meteor/meteor";
 import { DomainsCollection } from "../imports/api/domain/DomainCollections";
+import { HTTP } from "meteor/http";
+
+Meteor.methods({
+  getData: function (params) {
+    this.unblock();
+    try {
+      const result = HTTP.call("GET", process.env.WHOIS_API, {
+        params: {
+          apiKey: process.env.WHOIS_KEY,
+          domainName: params.domainName,
+        },
+      });
+      return result.data.DomainInfo.domainAvailability;
+    } catch (e) {
+      // Handle the error
+      console.log(e);
+      return false;
+    }
+  },
+});
 
 async function insertDomain({ url }) {
   await DomainsCollection.insertAsync({
@@ -9,8 +29,11 @@ async function insertDomain({ url }) {
 }
 
 Meteor.startup(() => {
+  process.env.WHOIS_KEY = "at_lrhV1Xux9W77E88StAJO30EpUU5n5";
+  process.env.WHOIS_API = "https://domain-availability.whoisxmlapi.com/api/v1";
   // If the Links collection is empty, add some data.
   if (DomainsCollection.find().count() === 0) {
+    console.log(process.env.WHOIS_API);
     insertDomain({
       url: "www.anddreluis.com.br",
     });

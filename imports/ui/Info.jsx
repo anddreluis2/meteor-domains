@@ -3,7 +3,6 @@ import { useTracker, useSubscribe } from "meteor/react-meteor-data";
 import { DomainsCollection } from "../api/domain/DomainCollections";
 import { DomainForm } from "../ui/DomainForm";
 import { Domains } from "./Domains";
-import { FaTrash } from "react-icons/fa";
 
 export const Info = () => {
   const isLoading = useSubscribe("domains");
@@ -29,7 +28,7 @@ export const Info = () => {
       <>
         <DomainForm />
         <div className="flex justify-center p-10 text-gray-700">
-          Insert your domains to start
+          Insert the domains that you want to save
         </div>
       </>
     );

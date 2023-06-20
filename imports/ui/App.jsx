@@ -1,10 +1,12 @@
-import React from 'react';
-import { Hello } from './Hello.jsx';
-import { Info } from './Info.jsx';
+import React from "react";
+import { Hello } from "./Hello.jsx";
+import { Info } from "./Info.jsx";
+import { Toaster } from "react-hot-toast";
 
 export const App = () => (
   <div className="max-w-3xl min-h-screen mx-auto sm:pt-10">
-    <Hello/>
-    <Info/>
+    <Hello />
+    <Info />
+    <Toaster position="top-right" reverseOrder={false} />
   </div>
 );

@@ -1,20 +1,35 @@
 import React, { useState } from "react";
 import { DomainsCollection } from "../api/domain/DomainCollections";
+import { toast } from "react-hot-toast";
+import { LoadingSpinner } from "./LoadingSpinner";
 
 export const DomainForm = () => {
-  const [text, setText] = useState("");
+  const [domain, setDomain] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setLoading(true);
 
-    if (!text) return;
+    if (!domain) return;
 
-    DomainsCollection.insert({
-      url: text.trim(),
-      createdAt: new Date(),
+    Meteor.call("getData", { domainName: domain }, (err, res) => {
+      if (err) {
+        alert("Error", err);
+      } else {
+        if (res === "AVAILABLE") {
+          DomainsCollection.insert({
+            url: domain.trim(),
+            createdAt: new Date(),
+          });
+          toast.success("Domain successfully added");
+        } else {
+          toast.error("This domain is unavailable");
+        }
+      }
+      setDomain("");
+      setLoading(false);
     });
-
-    setText("");
   };
 
   return (
@@ -23,14 +38,17 @@ export const DomainForm = () => {
       className="h-10 flex gap-2 border-black w-full"
     >
       <input
-        className="rounded-lg p-2 w-full"
-        onChange={(e) => setText(e.target.value)}
+        className="rounded-lg border border-gray-400 p-2 w-full"
+        onChange={(e) => setDomain(e.target.value)}
         type="text"
         placeholder="Type to add new domains"
       />
 
-      <button className="w-1/5 border rounded-lg" type="submit">
-        Add domain
+      <button
+        className="w-1/5 flex justify-center text-gray-700 items-center border border-gray-400 rounded-lg"
+        type="submit"
+      >
+        {loading ? <LoadingSpinner /> : "Submit"}
       </button>
     </form>
   );

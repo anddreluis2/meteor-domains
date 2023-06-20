@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 
 export const Hello = () => {
   return (
@@ -8,7 +8,7 @@ export const Hello = () => {
           <div>
             <div className="flex items-center">
               <h3 className="text-3xl text-gray-900 font-bold">
-                Welcome to Meteor!
+                Welcome to Meteor Domains!
               </h3>
               <div>
                 <svg
@@ -24,7 +24,7 @@ export const Hello = () => {
               </div>
             </div>
             <div className="mt-2 max-w-xl text-gray-500 text-lg">
-              <p>Checkout your domains</p>
+              <p>Check your domains wishlist ☄️</p>
             </div>
           </div>
           <div className="mt-5 sm:mt-0 sm:ml-6 sm:flex-shrink-0 sm:flex sm:items-center"></div>
