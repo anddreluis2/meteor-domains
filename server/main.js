@@ -14,7 +14,7 @@ Meteor.methods({
       });
       return result.data.DomainInfo.domainAvailability;
     } catch (e) {
-      console.log("error: ", e);
+      console.log("error:", e);
       return false;
     }
   },
